@@ -4,7 +4,7 @@ var histDisp = document.querySelector('#shistory');
 
 function weaLoUp(){
     event.preventDefault();
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + userLocal.value + '&limit=1&appid=a168c4807a6b5b30f90dc3b3ae152860')
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + userLocal.value + '&limit=1&appid=a168c4807a6b5b30f90dc3b3ae152860')
     .then(function (response) {
       return response.json();
     })
