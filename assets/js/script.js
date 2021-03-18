@@ -103,6 +103,10 @@ function printFiveWea(fiveW){
         forcHead.appendChild(text);
         fiveWeaDisp.appendChild(forcHead);
 
+        var forcImg = document.createElement('img');
+        forcImg.src = ('http://openweathermap.org/img/wn/' + fiveW[i].weather[0].icon + '.png');
+        fiveWeaDisp.appendChild(forcImg);
+
         var forcIcon = document.createElement('p');
         var text = document.createTextNode('placeholder');
         forcIcon.appendChild(text);
