@@ -1,6 +1,9 @@
 var userLocal = document.querySelector('#locat');
 var fetchButton = document.getElementById('losgo');
 var histDisp = document.querySelector('#shistory');
+var curWeaDisp = document.querySelector('#todaydisp');
+var fiveWeaDisp = document.querySelector('#fivedaydisp')
+var date = moment().format('l');
 
 function weaLoUp(){
     event.preventDefault();
@@ -22,7 +25,8 @@ function weaLoUp(){
         return response.json();
       })
       .then(function (data) {
-        console.log(data)
+        printTodayWea(data.current, userLocal.value);
+        printFiveWea(data.daily, userLocal.value);
       });
     });
 }
@@ -39,15 +43,26 @@ function sHistory(){
 
 function startup(){
     var searchhist = JSON.parse(localStorage.getItem('searchhist')) || [];
-    console.log(searchhist);
     for(var i = 0; i < searchhist.length; i++){
         var cHist = searchhist[i];
-        console.log(cHist);
         var pSearch = document.createElement('h4');
         var text = document.createTextNode(cHist);
         pSearch.appendChild(text);
         histDisp.appendChild(pSearch);
     }
+}
+
+function printTodayWea(curW, locale){
+    console.log(curW);
+    console.log(locale + '(' + date + ')');
+    console.log('Temperature: ' + curW.temp + '°F');
+    console.log('Humidity: ' + curW.humidity + '%');
+    console.log('Wind Speed: ' + curW.wind_speed + 'mph');
+    console.log('UV Index: ' + curW.uvi);
+}
+
+function printFiveWea(fiveW, locale){
+    console.log(fiveW);
 }
 
 startup();
