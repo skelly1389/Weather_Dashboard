@@ -1,9 +1,9 @@
 var userLocal = document.querySelector('#locat');
 var fetchButton = document.getElementById('losgo');
-// var histButton = document.getElementByClass('.')
+var histButton = document.querySelector('.clickable');
 var histDisp = document.querySelector('#shistory');
 var curWeaDisp = document.querySelector('#todaydisp');
-var fiveWeaDisp = document.querySelector('#fivedaydisp')
+var fiveWeaDisp = document.querySelector('#fivedaydisp');
 var date = moment().format('l');
 
 function weaLoUp(){
@@ -27,6 +27,32 @@ function weaLoUp(){
       })
       .then(function (data) {
         printTodayWea(data.current, userLocal.value);
+        printFiveWea(data.daily);
+      });
+    });
+}
+
+function histLoUp(histClicked){
+    event.preventDefault();
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + histClicked + '&limit=1&appid=a168c4807a6b5b30f90dc3b3ae152860')
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if(data.length === 0){
+          alert('enter a city name');
+          location.reload();
+      }
+      sHistory();
+      var sLat = data[0].lat;
+      var sLon = data[0].lon;
+
+      fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + sLat + '&lon=' + sLon + '&exclude=alerts,hourly,minutely&units=imperial&appid=a168c4807a6b5b30f90dc3b3ae152860')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        printTodayWea(data.current, histClicked);
         printFiveWea(data.daily);
       });
     });
@@ -129,7 +155,9 @@ function printFiveWea(fiveW){
 startup();
 
 fetchButton.addEventListener('click', weaLoUp);
-histButton.addEventListener('click', weaLoUp);
 
-
-
+histButton.addEventListener('click', event => {
+    var targHist = event.target.innerHTML;
+    console.log(targHist);
+    histLoUp(targHist);
+      });
