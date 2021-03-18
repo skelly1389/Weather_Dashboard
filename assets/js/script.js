@@ -63,6 +63,12 @@ function printTodayWea(curW, locale){
 
 function printFiveWea(fiveW, locale){
     console.log(fiveW);
+    for(var i =1; i<7; i++){
+        console.log('(' + (moment.unix(fiveW[i].dt).format("MM/DD/YYYY")) + ')');
+        console.log('icon placeholder');
+        console.log('Temp.: ' + fiveW[i].temp.day + '°F');
+        console.log('Humidity: ' + fiveW[i].humidity + '%');
+    }
 }
 
 startup();
