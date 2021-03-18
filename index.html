@@ -31,10 +31,14 @@
       <form>
         <label for="locat">Search for a city:</label><br>
         <input type="text" id="locat" name="locat" value="ex: Trenton">
+        <button id='losgo'>search</button>
       </form>
       <div id="shistory"></div>
     </aside>
-    <div id="locatweath" class="col-9"></div>
+    <div id="weathDisp" class="col-9">
+      <div id="todaydisp"></div>
+      <div id="fivedaydisp"></div>
+    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
