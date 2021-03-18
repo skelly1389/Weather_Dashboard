@@ -107,7 +107,16 @@ function printTodayWea(curW, locale){
     curWeaDisp.appendChild(curWs);
     
     var curUv = document.createElement('p');
-    var text = document.createTextNode('UV Index: ' + curW.uvi + '%');
+    var text = document.createTextNode('UV Index: ' + curW.uvi);
+    if(curW.uvi > 7){
+        curUv.classList.add("bg-danger");
+    }
+    if(curW.uvi < 3){
+        curUv.classList.add("bg-success");
+    }
+    else {
+        curUv.classList.add("bg-warning");
+    }
     curUv.appendChild(text);
     curWeaDisp.appendChild(curUv);
 }
