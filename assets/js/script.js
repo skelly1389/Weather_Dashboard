@@ -53,13 +53,6 @@ function startup(){
 }
 
 function printTodayWea(curW, locale){
-    console.log(curW);
-    console.log(locale + '(' + date + ')');
-    console.log('Temperature: ' + curW.temp + '°F');
-    console.log('Humidity: ' + curW.humidity + '%');
-    console.log('Wind Speed: ' + curW.wind_speed + 'mph');
-    console.log('UV Index: ' + curW.uvi + '%');
-
     var todayHead = document.createElement('h3');
     todayHead.classList.add("capitolize");
     var text = document.createTextNode(locale + ' (' + date + ')');
@@ -89,11 +82,37 @@ function printTodayWea(curW, locale){
 
 function printFiveWea(fiveW, locale){
     console.log(fiveW);
+    var forcStatic = document.createElement('h2');
+    forcStatic.classList.add("col-12");
+    var text = document.createTextNode('5-Day Forecast:');
+    forcStatic.appendChild(text);
+    fiveWeaDisp.appendChild(forcStatic);
+
     for(var i =1; i<7; i++){
         console.log('(' + (moment.unix(fiveW[i].dt).format("MM/DD/YYYY")) + ')');
         console.log('icon placeholder');
         console.log('Temp.: ' + fiveW[i].temp.day + '°F');
         console.log('Humidity: ' + fiveW[i].humidity + '%');
+
+        var forcHead = document.createElement('h4');
+        var text = document.createTextNode('(' + (moment.unix(fiveW[i].dt).format("MM/DD/YYYY")) + ')');
+        forcHead.appendChild(text);
+        fiveWeaDisp.appendChild(forcHead);
+
+        var forcIcon = document.createElement('p');
+        var text = document.createTextNode('placeholder');
+        forcIcon.appendChild(text);
+        fiveWeaDisp.appendChild(forcIcon);
+
+        var forcTemp = document.createElement('p');
+        var text = document.createTextNode('Temp.: ' + fiveW[i].temp.day + '°F');
+        forcTemp.appendChild(text);
+        fiveWeaDisp.appendChild(forcTemp);
+
+        var forcHum = document.createElement('p');
+        var text = document.createTextNode('Humidity: ' + fiveW[i].humidity + '%');
+        forcHum.appendChild(text);
+        fiveWeaDisp.appendChild(forcHum);
     }
 }
 
