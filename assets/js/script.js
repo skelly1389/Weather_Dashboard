@@ -1,5 +1,6 @@
 var userLocal = document.querySelector('#locat');
 var fetchButton = document.getElementById('losgo');
+// var histButton = document.getElementByClass('.')
 var histDisp = document.querySelector('#shistory');
 var curWeaDisp = document.querySelector('#todaydisp');
 var fiveWeaDisp = document.querySelector('#fivedaydisp')
@@ -61,11 +62,11 @@ function printTodayWea(curW, locale){
     curWeaDisp.appendChild(todayHead);
 ;
     var curImg = document.createElement('img');
-    curImg.src = ('http://openweathermap.org/img/wn/' + curW.weather[0].icon + '.png');
+    curImg.src = ('https://openweathermap.org/img/wn/' + curW.weather[0].icon + '.png');
     curWeaDisp.appendChild(curImg);
 
     var curTemp = document.createElement('p');
-    var text = document.createTextNode('Temperature: ' + curW.temp + '°F');
+    var text = document.createTextNode('Temperature: ' + parseInt(curW.temp) + '°F');
     curTemp.appendChild(text);
     curWeaDisp.appendChild(curTemp);
     
@@ -75,7 +76,7 @@ function printTodayWea(curW, locale){
     curWeaDisp.appendChild(curHum);
     
     var curWs = document.createElement('p');
-    var text = document.createTextNode('Wind Speed: ' + curW.wind_speed + 'mph');
+    var text = document.createTextNode('Wind Speed: ' + parseInt(curW.wind_speed) + 'mph');
     curWs.appendChild(text);
     curWeaDisp.appendChild(curWs);
     
@@ -106,16 +107,15 @@ function printFiveWea(fiveW){
         fiveWeaDisp.appendChild(forcHead);
 
         var forcImg = document.createElement('img');
-        forcImg.src = ('http://openweathermap.org/img/wn/' + fiveW[i].weather[0].icon + '.png');
+        forcImg.src = ('https://openweathermap.org/img/wn/' + fiveW[i].weather[0].icon + '.png');
         fiveWeaDisp.appendChild(forcImg);
 
         var forcIcon = document.createElement('p');
-        var text = document.createTextNode('placeholder');
         forcIcon.appendChild(text);
         fiveWeaDisp.appendChild(forcIcon);
 
         var forcTemp = document.createElement('p');
-        var text = document.createTextNode('Temp.: ' + fiveW[i].temp.day + '°F');
+        var text = document.createTextNode('Temp.: ' + parseInt(fiveW[i].temp.day) + '°F');
         forcTemp.appendChild(text);
         fiveWeaDisp.appendChild(forcTemp);
 
@@ -129,7 +129,7 @@ function printFiveWea(fiveW){
 startup();
 
 fetchButton.addEventListener('click', weaLoUp);
-// histButton.addEventListener('click', weaLoUp);
+histButton.addEventListener('click', weaLoUp);
 
 
 
