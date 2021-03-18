@@ -45,7 +45,7 @@ function startup(){
     var searchhist = JSON.parse(localStorage.getItem('searchhist')) || [];
     for(var i = 0; i < searchhist.length; i++){
         var cHist = searchhist[i];
-        var pSearch = document.createElement('h4');
+        var pSearch = document.createElement('h5');
         var text = document.createTextNode(cHist);
         pSearch.appendChild(text);
         histDisp.appendChild(pSearch);
@@ -58,7 +58,33 @@ function printTodayWea(curW, locale){
     console.log('Temperature: ' + curW.temp + '°F');
     console.log('Humidity: ' + curW.humidity + '%');
     console.log('Wind Speed: ' + curW.wind_speed + 'mph');
-    console.log('UV Index: ' + curW.uvi);
+    console.log('UV Index: ' + curW.uvi + '%');
+
+    var todayHead = document.createElement('h3');
+    todayHead.classList.add("capitolize");
+    var text = document.createTextNode(locale + ' (' + date + ')');
+    todayHead.appendChild(text);
+    curWeaDisp.appendChild(todayHead);
+
+    var curTemp = document.createElement('p');
+    var text = document.createTextNode('Temperature: ' + curW.temp + '°F');
+    curTemp.appendChild(text);
+    curWeaDisp.appendChild(curTemp);
+    
+    var curHum = document.createElement('p');
+    var text = document.createTextNode('Humidity: ' + curW.humidity + '%');
+    curHum.appendChild(text);
+    curWeaDisp.appendChild(curHum);
+    
+    var curWs = document.createElement('p');
+    var text = document.createTextNode('Wind Speed: ' + curW.wind_speed + 'mph');
+    curWs.appendChild(text);
+    curWeaDisp.appendChild(curWs);
+    
+    var curUv = document.createElement('p');
+    var text = document.createTextNode('UV Index: ' + curW.uvi + '%');
+    curUv.appendChild(text);
+    curWeaDisp.appendChild(curUv);
 }
 
 function printFiveWea(fiveW, locale){
@@ -74,4 +100,6 @@ function printFiveWea(fiveW, locale){
 startup();
 
 fetchButton.addEventListener('click', weaLoUp);
+
+
 
