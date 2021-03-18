@@ -26,7 +26,7 @@ function weaLoUp(){
       })
       .then(function (data) {
         printTodayWea(data.current, userLocal.value);
-        printFiveWea(data.daily, userLocal.value);
+        printFiveWea(data.daily);
       });
     });
 }
@@ -58,6 +58,10 @@ function printTodayWea(curW, locale){
     var text = document.createTextNode(locale + ' (' + date + ')');
     todayHead.appendChild(text);
     curWeaDisp.appendChild(todayHead);
+;
+    var curImg = document.createElement('img');
+    curImg.src = ('http://openweathermap.org/img/wn/' + curW.weather[0].icon + '.png');
+    curWeaDisp.appendChild(curImg);
 
     var curTemp = document.createElement('p');
     var text = document.createTextNode('Temperature: ' + curW.temp + '°F');
@@ -80,7 +84,7 @@ function printTodayWea(curW, locale){
     curWeaDisp.appendChild(curUv);
 }
 
-function printFiveWea(fiveW, locale){
+function printFiveWea(fiveW){
     console.log(fiveW);
     var forcStatic = document.createElement('h2');
     forcStatic.classList.add("col-12");
@@ -119,6 +123,7 @@ function printFiveWea(fiveW, locale){
 startup();
 
 fetchButton.addEventListener('click', weaLoUp);
+// histButton.addEventListener('click', weaLoUp);
 
 
 
