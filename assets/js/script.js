@@ -53,6 +53,7 @@ function startup(){
 }
 
 function printTodayWea(curW, locale){
+    curWeaDisp.innerHTML = " ";
     var todayHead = document.createElement('h3');
     todayHead.classList.add("capitolize");
     var text = document.createTextNode(locale + ' (' + date + ')');
@@ -86,6 +87,7 @@ function printTodayWea(curW, locale){
 
 function printFiveWea(fiveW){
     console.log(fiveW);
+    fiveWeaDisp.innerHTML = " ";
     var forcStatic = document.createElement('h2');
     forcStatic.classList.add("col-12");
     var text = document.createTextNode('5-Day Forecast:');
